@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "quick notes :: home";
+}
+
+<div ng-app="MainModule">    
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-controller="NotesController">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="@Url.Content("~/Content/images/carousel/img_1.jpg")" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption">
+                        <h1>Add a note!</h1>
+                        <p><input type="text" class="form-control" placeholder="Your note..." ng-model="note"/></p>
+                        <p><a class="btn btn-lg btn-primary" href="#" role="button" ng-click="addNote()">Add Note</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="pull-right" style="position: absolute; top: 503px; right: 5px; cursor: pointer">
+            <span id="banner" class="glyphicon glyphicon-export"></span>
+        </div>
+        <div ng-controller="ListController">
+            <div ng-repeat="note in notes">
+                <div class="q-note" id="{{ note.IdStr }}">
+                    {{ note.NoteContent }}
+                </div>
+                <div class="q-options">
+                    <span class="q-option q-select" ng-click="selectNote($event)">select</span>
+                    &nbsp;&nbsp;&nbsp;
+                    <span class="q-option">delete</span>
+                </div>
+                <br/><br/><br/>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    var mainModule = angular.module("MainModule", []);
+
+    mainModule.controller("NotesController", function($scope, $http) {
+        $scope.note = "";
+
+        $scope.addNote = function() {
+            $http.post('/api/list/addnote', { noteContent: $scope.note }).success(function (data, status, headers, config) {
+                alert('Note added!');
+            }).error(function (data, status, headers, config) {
+
+            });
+        };
+    });
+
+    mainModule.controller("ListController", function($scope, $http) {
+        $scope.notes = [];
+
+        $http.get('/api/list/getnotes').success(function (data, status, headers, config) {            
+            $scope.notes = data;
+        }).error(function(data, status, headers, config) {
+
+        });
+
+        $scope.selectNote = function(event) {
+            selectNote(event.target);
+        };
+    });
+</script>
+
+@section scripts
+{
+    <script>
+        function SelectText(element) {
+            var doc = document, text = doc.getElementById(element), range, selection;
+            if (doc.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(text);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();
+                range = document.createRange();
+                range.selectNodeContents(text);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
+
+        function selectNote(element) {
+            var note = $(element).parent().prev();
+            SelectText($(note).prop('id'));
+        }
+        
+        function removeBanner() {
+            $('#myCarousel').removeClass().addClass('bounceOutUp animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                $(this).removeClass();
+            });
+        };
+
+        $(function() {
+            $('#banner').on('click', function() {
+                removeBanner();
+            });
+        });
+    </script>
+}
