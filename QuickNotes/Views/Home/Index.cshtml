@@ -12,6 +12,7 @@
                         <h1>Add a note!</h1>
                         <p><input type="text" class="form-control" placeholder="Your note..." ng-model="note"/></p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button" ng-click="addNote()">Add Note</a></p>
+                        <p style="font-size: small" ng-show="noteAdded">Note Added!</p>
                     </div>
                 </div>
             </div>
@@ -36,7 +37,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script>
@@ -45,11 +45,16 @@
     mainModule.controller("NotesController", function($scope, $http) {
         $scope.note = "";
 
-        $scope.addNote = function() {
-            $http.post('/api/list/addnote', { noteContent: $scope.note }).success(function (data, status, headers, config) {
-                alert('Note added!');
-            }).error(function (data, status, headers, config) {
+        $scope.noteAdded = false;
 
+        $scope.addNote = function() {
+            $http({
+                method: 'get',
+                url: '/api/list/addnote?noteContent=' + $scope.note
+            }).success(function(data) {
+                $scope.noteAdded = true;
+            }).error(function(data) {
+                
             });
         };
     });
