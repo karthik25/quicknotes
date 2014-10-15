@@ -54,7 +54,7 @@
 
     var mainModule = angular.module("MainModule", []);
 
-    mainModule.controller("NotesController", function($scope, $http) {
+    mainModule.controller("NotesController", function($scope, $http, $timeout) {
         $scope.note = "";
 
         $scope.noteAdded = false;
@@ -65,6 +65,9 @@
                 url: root + 'api/list/addnote?noteContent=' + $scope.note
             }).success(function(data) {
                 $scope.noteAdded = true;
+                $timeout(function() {
+                    $scope.noteAdded = false;
+                }, 2000);
             }).error(function(data) {
                 
             });
