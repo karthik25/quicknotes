@@ -4,11 +4,11 @@
 
 <style type="text/css">
     .open-banner {
-        position: absolute; top: 503px; right: 15px; cursor: pointer
+        position: absolute; top: 503px; right: 10px; cursor: pointer
     }
 
     .closed-banner {
-        position: absolute; top: 3px; right: 15px; cursor: pointer
+        position: absolute; top: 3px; right: 10px; cursor: pointer
     }
 </style>
 
@@ -31,7 +31,7 @@
     <br class="space" style="display: none"/><br class="space" style="display: none"/><br class="space" style="display: none"/>
     <div class="container">
         <div class="pull-right">
-            <span id="banner" class="open-banner glyphicon glyphicon-export"></span>
+            <span id="banner" class="open-banner glyphicon glyphicon-export" title="open/close banner"></span>
         </div>
         <div ng-controller="ListController">
             <div ng-repeat="note in notes">
