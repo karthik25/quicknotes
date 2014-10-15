@@ -2,6 +2,16 @@
     ViewBag.Title = "quick notes :: home";
 }
 
+<style type="text/css">
+    .open-banner {
+        position: absolute; top: 503px; right: 15px; cursor: pointer
+    }
+
+    .closed-banner {
+        position: absolute; top: 3px; right: 15px; cursor: pointer
+    }
+</style>
+
 <div ng-app="MainModule">    
     <div id="myCarousel" class="carousel slide" data-ride="carousel" ng-controller="NotesController">
         <div class="carousel-inner">
@@ -18,10 +28,10 @@
             </div>
         </div>
     </div>
-    
+    <br class="space" style="display: none"/><br class="space" style="display: none"/><br class="space" style="display: none"/>
     <div class="container">
-        <div class="pull-right" style="position: absolute; top: 503px; right: 5px; cursor: pointer">
-            <span id="banner" class="glyphicon glyphicon-export"></span>
+        <div class="pull-right">
+            <span id="banner" class="open-banner glyphicon glyphicon-export"></span>
         </div>
         <div ng-controller="ListController">
             <div ng-repeat="note in notes">
@@ -40,6 +50,8 @@
 </div>
 
 <script>
+    var root = '@Url.Content("~/")';
+
     var mainModule = angular.module("MainModule", []);
 
     mainModule.controller("NotesController", function($scope, $http) {
@@ -50,7 +62,7 @@
         $scope.addNote = function() {
             $http({
                 method: 'get',
-                url: '/api/list/addnote?noteContent=' + $scope.note
+                url: root + 'api/list/addnote?noteContent=' + $scope.note
             }).success(function(data) {
                 $scope.noteAdded = true;
             }).error(function(data) {
@@ -62,7 +74,7 @@
     mainModule.controller("ListController", function($scope, $http) {
         $scope.notes = [];
 
-        $http.get('/api/list/getnotes').success(function (data, status, headers, config) {            
+        $http.get(root + 'api/list/getnotes').success(function (data, status, headers, config) {            
             $scope.notes = data;
         }).error(function(data, status, headers, config) {
 
@@ -97,15 +109,22 @@
             SelectText($(note).prop('id'));
         }
         
-        function removeBanner() {
-            $('#myCarousel').removeClass().addClass('bounceOutUp animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
-                $(this).removeClass();
-            });
-        };
-
         $(function() {
-            $('#banner').on('click', function() {
-                removeBanner();
+            $('#banner').on('click', function () {
+                $('#banner').hide();
+                if ($('#banner').hasClass('closed-banner')) {
+                    $('.space').hide();
+                }
+                $("#myCarousel").animate({
+                        height: "toggle"
+                }, 1000, function () {                    
+                    if ($('#banner').hasClass('open-banner')) {
+                        $('#banner').removeClass('open-banner glyphicon-export').addClass('closed-banner glyphicon-import').show();
+                        $('.space').show();
+                    } else {
+                        $('#banner').removeClass('closed-banner glyphicon-import').addClass('open-banner glyphicon-export').show();                        
+                    }
+                });
             });
         });
     </script>
