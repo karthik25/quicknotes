@@ -143,6 +143,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\carousel.css" />
     <Content Include="Content\images\carousel\img_1.jpg" />
+    <Content Include="Content\images\loader.gif" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

@@ -22,7 +22,8 @@
                         <h1>Add a note!</h1>
                         <p><input type="text" class="form-control" placeholder="Your note..." ng-model="note"/></p>
                         <p><a class="btn btn-lg btn-primary" href="#" role="button" ng-click="addNote()">Add Note</a></p>
-                        <p style="font-size: small" ng-show="noteAdded">Note Added!</p>
+                        <p style="font-size: small" ng-show="noteAdding"><img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;adding a note...</p>
+                        <p style="font-size: small" ng-show="noteAdded">note added!</p>
                     </div>
                 </div>
             </div>
@@ -30,6 +31,9 @@
     </div>
     <br class="space" style="display: none"/><br class="space" style="display: none"/><br class="space" style="display: none"/>
     <div class="container">
+        <div ng-show="busy">
+            <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
+        </div>
         <div class="pull-right">
             <span id="banner" class="open-banner glyphicon glyphicon-export" title="open/close banner"></span>
         </div>
@@ -60,11 +64,16 @@
 
         $scope.noteAdded = false;
 
-        $scope.addNote = function() {
+        $scope.busy = false;
+        $scope.noteAdding = false;
+
+        $scope.addNote = function () {
+            $scope.noteAdding = true;
             $http({
                 method: 'get',
                 url: root + 'api/list/addnote?noteContent=' + $scope.note
-            }).success(function(data) {
+            }).success(function (data) {
+                $scope.noteAdding = false;
                 $scope.noteAdded = true;
                 $scope.getNotes();
                 $timeout(function() {
@@ -75,9 +84,11 @@
             });
         };
 
-        $scope.getNotes = function() {
+        $scope.getNotes = function () {
+            $scope.busy = true;
             $http.get(root + 'api/list/getnotes').success(function (data, status, headers, config) {
                 $scope.notes = data;
+                $scope.busy = false;
             }).error(function (data, status, headers, config) {
 
             });
