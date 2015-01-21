@@ -1,6 +1,6 @@
 ﻿using System.Web.Optimization;
 
-namespace QuickNotes
+namespace QuickNotes.App_Start
 {
     public class BundleConfig
     {
