@@ -11,7 +11,7 @@ namespace QuickNotes.App_Start
                         "~/Scripts/jquery-{version}.js"));
             bundles.Add(new ScriptBundle("~/bundles/scripts").Include("~/Scripts/bootstrap.js", "~/Scripts/ZeroClipboard.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/angular").Include("~/Scripts/angular.js", "~/Scripts/angular-route.js"));
+            bundles.Add(new ScriptBundle("~/bundles/angular").Include("~/Scripts/angular.js", "~/Scripts/angular-route.js", "~/Scripts/notes-core.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/bootstrap.css", 
                         "~/Content/bootstrap-theme.css", "~/Content/carousel.css"));
