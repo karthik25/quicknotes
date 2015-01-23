@@ -165,6 +165,7 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\ngClip.js" />
     <Content Include="Scripts\notes-core.js" />
     <Content Include="Scripts\notes-misc.js" />
     <Content Include="Scripts\ZeroClipboard.js" />

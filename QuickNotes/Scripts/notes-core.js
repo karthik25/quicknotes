@@ -1,4 +1,8 @@
-﻿var mainModule = angular.module("MainModule", []);
+﻿var mainModule = angular.module("MainModule", ['ngClipboard']);
+
+mainModule.config(['ngClipProvider', function (ngClipProvider) {
+    ngClipProvider.setPath("//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.swf");
+}]);
 
 mainModule.controller("NotesController", function ($scope, $http, $timeout) {
     $scope.note = "";
@@ -8,6 +12,8 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout) {
 
     $scope.busy = false;
     $scope.noteAdding = false;
+
+    $scope.copy1 = "";
 
     $scope.addNote = function () {
         $scope.noteAdding = true;
