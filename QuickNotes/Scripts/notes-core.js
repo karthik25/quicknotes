@@ -13,7 +13,7 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout) {
     $scope.busy = false;
     $scope.noteAdding = false;
 
-    $scope.copy1 = "";
+    $scope.copy_status = false;
 
     $scope.addNote = function () {
         $scope.noteAdding = true;
@@ -70,5 +70,12 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout) {
             }
         }
         return hasFlash;
+    };
+
+    $scope.displayNotice = function() {
+        $scope.copy_status = true;
+        $timeout(function() {
+            $scope.copy_status = false;
+        }, 2000);
     };
 });

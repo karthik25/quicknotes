@@ -10,6 +10,18 @@
     .closed-banner {
         position: absolute; top: 3px; right: 10px; cursor: pointer
     }
+
+    .information {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background-color: #FE2E2E;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        border: 1px solid #8A0829;
+        z-index: 999
+    }
 </style>
 
 <div ng-app="MainModule" ng-controller="NotesController">
@@ -47,7 +59,7 @@
                         <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> select
                     </span>
                     &nbsp;&nbsp;&nbsp;
-                    <span class="q-option" clip-copy="note.NoteContent">
+                    <span class="q-option" ng-click="displayNotice()" clip-copy="note.NoteContent">
                         <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> copy
                     </span>
                     &nbsp;&nbsp;&nbsp;
@@ -58,6 +70,10 @@
                 <br/><br/><br/>
             </div>
         </div>
+    </div>
+    
+    <div ng-show="copy_status" class="information">
+        copied!
     </div>
 </div>
 
