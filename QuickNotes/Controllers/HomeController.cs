@@ -8,5 +8,10 @@ namespace QuickNotes.Controllers
         {
             return View();
         }
+
+        public ActionResult Sticky()
+        {
+            return View();
+        }
     }
 }
