@@ -1,0 +1,142 @@
+﻿*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    font-family: arial,sans-serif;
+    font-size: 100%;
+    color: #fff;
+}
+
+h2, p
+{
+    font-size: 100%;
+    font-weight: normal;
+}
+
+ul, li
+{
+    list-style: none;
+}
+
+ul
+{
+    overflow: hidden;
+    padding: 5em;
+}
+
+ul li a
+{
+    text-decoration: none;
+    color: #000;
+    background: #ffc;
+    display: block;
+    height: 20em;
+    width: 40em;
+    padding: 5em;
+    -moz-box-shadow: 5px 5px 7px rgba(33,33,33,1);
+    -webkit-box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+    -moz-transition: -moz-transform .15s linear;
+    -o-transition: -o-transform .15s linear;
+    -webkit-transition: -webkit-transform .15s linear;
+}
+
+ul li
+{
+    margin: 1em;
+    float: left;
+}
+
+ul li h2
+{
+    font-size: 140%;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+ul li p
+{
+    font-family: "Reenie Beanie",arial,sans-serif;
+    font-size: 180%;
+}
+
+ul li a
+{
+    -webkit-transform: rotate(-6deg);
+    -o-transform: rotate(-6deg);
+    -moz-transform: rotate(-6deg);
+}
+
+ul li:nth-child(even) a
+{
+    -o-transform: rotate(4deg);
+    -webkit-transform: rotate(4deg);
+    -moz-transform: rotate(4deg);
+    position: relative;
+    top: 5px;
+    background: #cfc;
+}
+
+ul li:nth-child(3n) a
+{
+    -o-transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    position: relative;
+    top: -5px;
+    background: #ccf;
+}
+
+ul li:nth-child(5n) a
+{
+    -o-transform: rotate(5deg);
+    -webkit-transform: rotate(5deg);
+    -moz-transform: rotate(5deg);
+    position: relative;
+    top: -10px;
+}
+
+ul li a:hover, ul li a:focus
+{
+    box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    -moz-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    position: relative;
+    z-index: 5;
+    text-decoration: none;
+    color: black;
+}
+            
+.information {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    background-color: #FE2E2E;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #8A0829;
+    z-index: 999
+}
+
+.controls {
+    position: absolute; 
+    bottom: 5px; 
+    right: 10px; 
+    font-size: large
+}
+
+.header {
+    font-weight: bold;
+    font-size: large;
+    color: green;
+    padding: 5px
+}
+
+.loader {
+    color: red    
+}
