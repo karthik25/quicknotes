@@ -102,10 +102,13 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout, $loc
             $scope.copy_status = false;
         }, 2000);
     };
+});
 
-    $scope.loadDefaultView = function() {
+mainModule.controller("SettingsController", function ($scope, $log, $location, appSettingsFactory) {
+    $scope.loadDefaultView = function () {
         var defaultView = appSettingsFactory.getDefaultView();
         if (defaultView != '') {
+            $log.info('LOG: Reloading the view');
             $location.path('/' + defaultView);
         }
     };

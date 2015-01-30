@@ -26,19 +26,21 @@
     }
 </style>
 
-<div ng-app="MainModule" ng-controller="NotesController">
-    <div class="pull-right">
-        <a href="#sticky">sticky</a> | <a href="#/">plain</a>
-    </div>
-    <br/>
-    <div class="text-center loader" ng-show="busy">
-        <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
-    </div>
+<div ng-app="MainModule" ng-controller="SettingsController">
+    <div ng-controller="NotesController">
+        <div class="pull-right">
+            <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+        </div>
+        <br/>
+        <div class="text-center loader" ng-show="busy">
+            <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
+        </div>
 
-    <div ng-view></div>
+        <div ng-view></div>
 
-    <div ng-show="copy_status" class="information">
-        copied!
+        <div ng-show="copy_status" class="information">
+            copied!
+        </div>
     </div>
 </div>
 
