@@ -13,7 +13,22 @@ mainModule.config(['$routeProvider','ngClipProvider', function ($routeProvider, 
     });
 }]);
 
-mainModule.controller("NotesController", function ($scope, $http, $timeout) {
+mainModule.factory("appSettingsFactory", function () {
+    var data = {
+        DefaultView: 'sticky'
+    };
+
+    return {
+        getDefaultView: function () {
+            return data.DefaultView;
+        },
+        setDefaultView: function (defaultView) {
+            data.DefaultView = defaultView;
+        }
+    };
+});
+
+mainModule.controller("NotesController", function ($scope, $http, $timeout, $location, $log, appSettingsFactory) {
     $scope.note = "";
     $scope.notes = [];
 
@@ -87,4 +102,13 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout) {
             $scope.copy_status = false;
         }, 2000);
     };
+
+    $scope.loadDefaultView = function() {
+        var defaultView = appSettingsFactory.getDefaultView();
+        if (defaultView != '') {
+            $location.path('/' + defaultView);
+        }
+    };
+
+    $scope.loadDefaultView();
 });

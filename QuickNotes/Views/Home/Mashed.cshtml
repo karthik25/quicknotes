@@ -27,7 +27,9 @@
 </style>
 
 <div ng-app="MainModule" ng-controller="NotesController">
-    <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+    <div class="pull-right">
+        <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+    </div>
     <br/>
     <div class="text-center loader" ng-show="busy">
         <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
