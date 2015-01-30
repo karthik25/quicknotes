@@ -1,0 +1,16 @@
+﻿<ul>
+    <li ng-repeat="note in notes">
+        <a href="#">
+            <p>{{ note.NoteContent }}</p>
+            <div class="controls">
+                <span ng-click="displayNotice()" clip-copy="note.NoteContent">
+                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+                </span>
+                &nbsp;
+                <span ng-click="removeNote(note.NoteId)">
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                </span>
+            </div>
+        </a>
+    </li>
+</ul>

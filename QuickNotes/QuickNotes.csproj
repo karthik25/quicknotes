@@ -163,6 +163,7 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\notes-core-mashed.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
@@ -173,6 +174,8 @@
     <Content Include="Scripts\ZeroClipboard.min.js" />
     <Content Include="Scripts\ZeroClipboard.swf" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Static\Templates\Plain.html" />
+    <Content Include="Static\Templates\Sticky.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -187,6 +190,7 @@
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Sticky.cshtml" />
+    <Content Include="Views\Home\Mashed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,8 +13,7 @@ namespace QuickNotes.App_Start
 
             bundles.Add(new ScriptBundle("~/bundles/angular").Include("~/Scripts/angular.js", 
                                                                       "~/Scripts/angular-route.js", 
-                                                                      "~/Scripts/ngClip.js", 
-                                                                      "~/Scripts/notes-core.js"));
+                                                                      "~/Scripts/ngClip.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css", "~/Content/bootstrap.css", 
                         "~/Content/bootstrap-theme.css", "~/Content/carousel.css"));

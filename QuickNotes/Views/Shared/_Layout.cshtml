@@ -10,6 +10,7 @@
     @Styles.Render("~/Content/css")
     <script src="//cdnjs.cloudflare.com/ajax/libs/zeroclipboard/2.1.6/ZeroClipboard.min.js"></script>
     @Scripts.Render("~/bundles/angular")
+    @RenderSection("coreScripts", required: false)
 </head>
 <body>
     @RenderBody()

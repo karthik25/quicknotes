@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "quick notes :: home";
+}
+
+@section coreScripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/notes-core-mashed.js")"></script>
+}
+
+<br/>
+<div class="header">Your notes!</div>
+
+<link href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="@Url.Content("~/Content/sticky.css")"/>
+<style type="text/css">
+    .information {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background-color: #FE2E2E;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        border: 1px solid #8A0829;
+        z-index: 999
+    }
+</style>
+
+<div ng-app="MainModule" ng-controller="NotesController">
+    <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+    <br/>
+    <div class="text-center loader" ng-show="busy">
+        <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
+    </div>
+
+    <div ng-view></div>
+
+    <div ng-show="copy_status" class="information">
+        copied!
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/notes-misc.js")"></script>
+}
