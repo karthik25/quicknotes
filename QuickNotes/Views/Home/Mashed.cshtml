@@ -8,7 +8,6 @@
 }
 
 <br/>
-<div class="header">Your notes!</div>
 
 <link href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="@Url.Content("~/Content/sticky.css")"/>
@@ -16,8 +15,7 @@
     .information {
         position: absolute;
         left: 50%;
-        top: 50%;
-        background-color: #FE2E2E;
+        top: 5%;
         color: white;
         font-weight: bold;
         padding: 10px;
@@ -26,20 +24,29 @@
     }
 </style>
 
-<div ng-app="MainModule" ng-controller="SettingsController">
-    <div ng-controller="NotesController">
-        <div class="pull-right">
-            <a href="#sticky">sticky</a> | <a href="#/">plain</a>
-        </div>
-        <br/>
-        <div class="text-center loader" ng-show="busy">
-            <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
-        </div>
+<div class="container">
 
-        <div ng-view></div>
+    <div ng-app="MainModule" ng-controller="SettingsController">
+        <div ng-controller="NotesController">
+            <div class="header">
+                <div class="pull-left">
+                    Your Notes
+                </div>
+                <div class="pull-right">
+                    <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+                </div>
+            </div>
+            <br/><br/>
+            <hr/>
+            <div class="text-center loader" ng-show="busy">
+                <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
+            </div>
 
-        <div ng-show="copy_status" class="information">
-            copied!
+            <div ng-view></div>
+
+            <div ng-show="copy_status" class="information">
+                copied!
+            </div>
         </div>
     </div>
 </div>

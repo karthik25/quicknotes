@@ -60,7 +60,7 @@ ul li h2
 
 ul li p
 {
-    font-family: "Reenie Beanie",arial,sans-serif;
+    font-family: arial,sans-serif;
     font-size: 180%;
 }
 
@@ -132,9 +132,10 @@ ul li a:hover, ul li a:focus
 
 .header {
     font-weight: bold;
-    font-size: large;
+    font-size: xx-large;
     color: green;
-    padding: 5px
+    padding: 5px;
+    font-family: "Reenie Beanie", arial, sans-serif
 }
 
 .loader {
