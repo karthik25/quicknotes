@@ -42,11 +42,40 @@
                 <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
             </div>
 
+            <!-- Button trigger modal -->
+            <div class="pull-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                  Add a Note!
+                </button>
+            </div>
+
             <div ng-view></div>
 
             <div ng-show="copy_status" class="information">
                 copied!
             </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" style="color: green" id="myModalLabel">Add a Note!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" placeholder="Your note..." ng-model="note"/>
+                        </div>
+                        <div class="modal-footer">
+                            <div style="font-size: small; color: green" ng-show="noteAdding"><img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;adding...</div>
+                            <div style="font-size: small; color: green" ng-show="noteAdded">note added!</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="addNote()">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
