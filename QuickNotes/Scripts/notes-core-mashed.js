@@ -14,8 +14,24 @@ mainModule.config(['$routeProvider','ngClipProvider', function ($routeProvider, 
 }]);
 
 mainModule.factory("appSettingsFactory", function () {
+    var getFromLocalStorage = function () {
+        if (typeof (localStorage) !== "undefined") {
+            return localStorage.getItem("defaultView");
+        } else {
+            $log.info('Unable to get from the local storage');
+            return '';
+        }
+    };
+
+    var setToLocalStorage = function (viewName) {
+        if (typeof (localStorage) !== "undefined") {
+            localStorage.setItem("defaultView", viewName);
+        } else {
+            $log.info('Unable to add to the local storage');            
+        }
+    };
     var data = {
-        DefaultView: 'sticky'
+        DefaultView: getFromLocalStorage()
     };
 
     return {
@@ -23,6 +39,7 @@ mainModule.factory("appSettingsFactory", function () {
             return data.DefaultView;
         },
         setDefaultView: function (defaultView) {
+            setToLocalStorage(defaultView);
             data.DefaultView = defaultView;
         }
     };
@@ -102,12 +119,21 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout, $loc
             $scope.copy_status = false;
         }, 2000);
     };
+
+    $scope.markStickyAsDefault = function () {
+        $log.info('Setting sticky as the default');
+        appSettingsFactory.setDefaultView('sticky');
+    };
+
+    $scope.markPlainAsDefault = function() {
+        appSettingsFactory.setDefaultView('');
+    };
 });
 
 mainModule.controller("SettingsController", function ($scope, $log, $location, appSettingsFactory) {
     $scope.loadDefaultView = function () {
         var defaultView = appSettingsFactory.getDefaultView();
-        if (defaultView != '') {
+        if (defaultView != undefined && defaultView != '') {
             $log.info('LOG: Reloading the view');
             $location.path('/' + defaultView);
         }
