@@ -1,9 +1,13 @@
 ﻿<ul>
     <li ng-repeat="note in notes">
         <a href="javascript:void(0)">
-            <p>{{ note.NoteContent }}</p>
+            <p id="{{ note.IdStr }}">{{ note.NoteContent }}</p>
             <div class="controls">
-                <span ng-click="displayNotice()" clip-copy="note.NoteContent">
+                <span ng-hide="isFlashAvailable()" ng-click="selectNote($event)">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                </span>
+                &nbsp;
+                <span ng-show="isFlashAvailable()" ng-click="displayNotice()" clip-copy="note.NoteContent">
                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
                 </span>
                 &nbsp;

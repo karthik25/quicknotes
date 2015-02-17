@@ -5,11 +5,11 @@
     </div>
     <div class="q-options">
         <span class="q-option q-select" ng-hide="isFlashAvailable()" ng-click="selectNote($event)">
-            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> select
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> select
         </span>
         &nbsp;&nbsp;&nbsp;
-        <span class="q-option" ng-click="displayNotice()" clip-copy="note.NoteContent">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> copy
+        <span class="q-option" ng-show="isFlashAvailable()" ng-click="displayNotice()" clip-copy="note.NoteContent">
+            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> copy
         </span>
         &nbsp;&nbsp;&nbsp;
         <span class="q-option" ng-click="removeNote(note.NoteId)">
