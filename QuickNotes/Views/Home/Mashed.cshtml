@@ -36,6 +36,10 @@
     .active-link {
         background-color: yellow
     }
+
+    .main-nav a {
+        padding: 8px
+    }
 </style>
 
 <div class="container-fluid">
@@ -46,7 +50,7 @@
                 <div class="pull-left">
                     Your Notes
                 </div>
-                <div class="pull-right">
+                <div class="pull-right main-nav">
                     <a href="#sticky" ng-click="setStickyAsActive()" ng-class="{ 'active-link' : sticky_active }">sticky</a> | 
                     <a href="#/" ng-click="setPlainAsActive()" ng-class="{ 'active-link' : plain_active }">plain</a>
                 </div>
