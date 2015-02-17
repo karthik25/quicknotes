@@ -18,6 +18,8 @@
     </div>
     <br/><br/><br/>
 </div>
-<div style="position: fixed; bottom: 10px; right: 10px">
-    <a href="javascript:void(0)" ng-click="markPlainAsDefault()"><span class="glyphicon glyphicon-flag"></span> Set as Default</a>
+<div class="additional-options" ng-show="showAdditionalOptions()">
+    <a href="javascript:void(0)" ng-click="markPlainAsDefault()"><span class="glyphicon glyphicon-flag"></span> Set as Default</a> 
+    <span class="seperator">/</span>
+    <a href="javascript:void(0)" ng-click="clearDefault()"><span class="glyphicon glyphicon-remove"></span> Clear Default</a>
 </div>

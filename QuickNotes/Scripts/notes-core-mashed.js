@@ -128,6 +128,14 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout, $loc
     $scope.markPlainAsDefault = function() {
         appSettingsFactory.setDefaultView('');
     };
+
+    $scope.clearDefault = function() {
+        appSettingsFactory.setDefaultView('');
+    };
+
+    $scope.showAdditionalOptions = function() {
+        return typeof(localStorage) != "undefined";
+    };
 });
 
 mainModule.controller("SettingsController", function ($scope, $log, $location, appSettingsFactory) {
