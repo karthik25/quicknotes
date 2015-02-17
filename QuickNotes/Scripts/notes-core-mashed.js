@@ -55,6 +55,8 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout, $loc
     $scope.noteAdding = false;
 
     $scope.copy_status = false;
+    $scope.sticky_active = appSettingsFactory.getDefaultView() == 'sticky';
+    $scope.plain_active = appSettingsFactory.getDefaultView() == '';
 
     $scope.addNote = function () {
         $scope.noteAdding = true;
@@ -135,6 +137,16 @@ mainModule.controller("NotesController", function ($scope, $http, $timeout, $loc
 
     $scope.showAdditionalOptions = function() {
         return typeof(localStorage) != "undefined";
+    };
+
+    $scope.setStickyAsActive = function() {
+        $scope.sticky_active = true;
+        $scope.plain_active = false;
+    };
+
+    $scope.setPlainAsActive = function() {
+        $scope.plain_active = true;
+        $scope.sticky_active = false;
     };
 });
 

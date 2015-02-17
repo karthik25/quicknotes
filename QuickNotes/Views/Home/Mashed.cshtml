@@ -32,6 +32,10 @@
     .seperator {
         color: gray
     }
+
+    .active-link {
+        background-color: yellow
+    }
 </style>
 
 <div class="container-fluid">
@@ -43,7 +47,8 @@
                     Your Notes
                 </div>
                 <div class="pull-right">
-                    <a href="#sticky">sticky</a> | <a href="#/">plain</a>
+                    <a href="#sticky" ng-click="setStickyAsActive()" ng-class="{ 'active-link' : sticky_active }">sticky</a> | 
+                    <a href="#/" ng-click="setPlainAsActive()" ng-class="{ 'active-link' : plain_active }">plain</a>
                 </div>
             </div>
             <br/><br/>
