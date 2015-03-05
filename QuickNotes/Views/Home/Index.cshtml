@@ -4,85 +4,122 @@
 
 @section coreScripts
 {
-    <script type="text/javascript" src="@Url.Content("~/Scripts/notes-core.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Scripts/notes-core-mashed.js")"></script>
 }
 
+<br/>
+
+<link href="http://fonts.googleapis.com/css?family=Reenie+Beanie:regular" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="@Url.Content("~/Content/sticky.css")"/>
 <style type="text/css">
-    .open-banner {
-        position: absolute; top: 503px; right: 10px; cursor: pointer
-    }
-
-    .closed-banner {
-        position: absolute; top: 3px; right: 10px; cursor: pointer
-    }
-
     .information {
         position: absolute;
         left: 50%;
-        top: 50%;
-        background-color: #FE2E2E;
+        top: 5%;
         color: white;
         font-weight: bold;
         padding: 10px;
         border: 1px solid #8A0829;
         z-index: 999
     }
+
+    .additional-options {
+        position: fixed; 
+        bottom: 10px; 
+        right: 10px
+    }
+
+    .seperator {
+        color: gray
+    }
+
+    .active-link {
+        background-color: yellow
+    }
+
+    .main-nav a {
+        padding: 8px
+    }
 </style>
 
-<div ng-app="MainModule" ng-controller="NotesController">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-            <div class="item active">
-                <img src="@Url.Content("~/Content/images/carousel/img_1.jpg")" alt="First slide">
-                <div class="container">
-                    <div class="carousel-caption">
-                        <h1>Add a note!</h1>
-                        <p><input type="text" class="form-control" placeholder="Your note..." ng-model="note"/></p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button" ng-click="addNote()">Add Note</a></p>
-                        <p style="font-size: small" ng-show="noteAdding"><img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;adding a note...</p>
-                        <p style="font-size: small" ng-show="noteAdded">note added!</p>
+<div class="container-fluid">
+
+    <div ng-app="MainModule" ng-controller="SettingsController">
+        <div ng-controller="NotesController">
+            <div class="header">
+                <div class="pull-left">
+                    Your Notes
+                </div>
+                <div class="pull-right main-nav">
+                    <a href="#sticky" ng-click="setStickyAsActive()" ng-class="{ 'active-link' : sticky_active }">sticky</a> | 
+                    <a href="#/" ng-click="setPlainAsActive()" ng-class="{ 'active-link' : plain_active }">plain</a>
+                </div>
+            </div>
+            <br/><br/>
+            <hr/>
+            <div class="text-center loader" ng-show="busy">
+                <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
+            </div>
+
+            <!-- Button trigger modal -->
+            <div class="pull-right">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                  Add a Note!
+                </button>
+            </div>
+
+            <div ng-view></div>
+
+            <div ng-show="copy_status" class="information">
+                copied!
+            </div>
+            
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" style="color: green" id="myModalLabel">Add a Note!</h4>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" placeholder="Your note..." ng-model="note"/>
+                        </div>
+                        <div class="modal-footer">
+                            <div style="font-size: small; color: green" ng-show="noteAdding"><img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;adding...</div>
+                            <div style="font-size: small; color: green" ng-show="noteAdded">note added!</div>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" ng-click="addNote()">Add</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
-    </div>
-    <br class="space" style="display: none"/><br class="space" style="display: none"/><br class="space" style="display: none"/>
-    <div class="container">
-        <div ng-show="busy">
-            <img src="@Url.Content("~/Content/images/loader.gif")" alt=""/>&nbsp;getting the notes...
-        </div>
-        <div class="pull-right">
-            <span id="banner" class="open-banner glyphicon glyphicon-export" title="open/close banner"></span>
-        </div>
-        <div>
-            <div ng-repeat="note in notes">
-                <div class="q-note" id="{{ note.IdStr }}">
-                    {{ note.NoteContent }}
-                </div>
-                <div class="q-options">
-                    <span class="q-option q-select" ng-hide="isFlashAvailable()" ng-click="selectNote($event)">
-                        <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> select
-                    </span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span class="q-option" ng-click="displayNotice()" clip-copy="note.NoteContent">
-                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> copy
-                    </span>
-                    &nbsp;&nbsp;&nbsp;
-                    <span class="q-option" ng-click="removeNote(note.NoteId)">
-                        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
-                    </span>
-                </div>
-                <br/><br/><br/>
-            </div>
-        </div>
-    </div>
-    
-    <div ng-show="copy_status" class="information">
-        copied!
     </div>
 </div>
 
 @section scripts
 {
-    <script type="text/javascript" src="@Url.Content("~/Scripts/notes-misc.js")"></script>
+    <script type="text/javascript" language="javascript">
+        function SelectText(element) {
+            var doc = document, text = doc.getElementById(element), range, selection;
+            if (doc.body.createTextRange) {
+                range = document.body.createTextRange();
+                range.moveToElementText(text);
+                range.select();
+            } else if (window.getSelection) {
+                selection = window.getSelection();
+                range = document.createRange();
+                range.selectNodeContents(text);
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
+
+        function selectNote(element) {
+            var note = $(element).parent().prev();
+            SelectText($(note).prop('id'));
+        }
+    </script>
 }

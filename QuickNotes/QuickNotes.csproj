@@ -168,7 +168,6 @@
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\ngClip.js" />
-    <Content Include="Scripts\notes-core.js" />
     <Content Include="Scripts\notes-misc.js" />
     <Content Include="Scripts\ZeroClipboard.js" />
     <Content Include="Scripts\ZeroClipboard.min.js" />
@@ -189,8 +188,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Sticky.cshtml" />
-    <Content Include="Views\Home\Mashed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

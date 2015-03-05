@@ -1,23 +1,26 @@
 ﻿<br/><br/><br/>
-<div ng-repeat="note in notes">
-    <div class="q-note" id="{{ note.IdStr }}">
-        {{ note.NoteContent }}
+<div>
+    <div ng-repeat="note in notes">
+        <div class="q-note" id="{{ note.IdStr }}">
+            {{ note.NoteContent }}
+        </div>
+        <div class="q-options">
+            <span class="q-option q-select" ng-hide="isFlashAvailable()" ng-click="selectNote($event)">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> select
+            </span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="q-option" ng-show="isFlashAvailable()" ng-click="displayNotice()" clip-copy="note.NoteContent">
+                <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> copy
+            </span>
+            &nbsp;&nbsp;&nbsp;
+            <span class="q-option" ng-click="removeNote(note.NoteId)">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
+            </span>
+        </div>
+        <br/><br/><br/>
     </div>
-    <div class="q-options">
-        <span class="q-option q-select" ng-hide="isFlashAvailable()" ng-click="selectNote($event)">
-            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> select
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span class="q-option" ng-show="isFlashAvailable()" ng-click="displayNotice()" clip-copy="note.NoteContent">
-            <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span> copy
-        </span>
-        &nbsp;&nbsp;&nbsp;
-        <span class="q-option" ng-click="removeNote(note.NoteId)">
-            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> delete
-        </span>
-    </div>
-    <br/><br/><br/>
 </div>
+
 <div class="additional-options" ng-show="showAdditionalOptions()">
     <a href="javascript:void(0)" ng-click="markPlainAsDefault()"><span class="glyphicon glyphicon-flag"></span> Set as Default</a> 
     <span class="seperator">/</span>

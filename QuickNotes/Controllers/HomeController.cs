@@ -8,15 +8,5 @@ namespace QuickNotes.Controllers
         {
             return View();
         }
-
-        public ActionResult Sticky()
-        {
-            return View();
-        }
-
-        public ActionResult Mashed()
-        {
-            return View();
-        }
     }
 }
