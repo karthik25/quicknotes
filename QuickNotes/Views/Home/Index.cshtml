@@ -40,6 +40,14 @@
     .main-nav a {
         padding: 8px
     }
+
+    .logo {
+        color: green
+    }
+
+    .logo:hover {
+        text-decoration: none
+    }
 </style>
 
 <div class="container-fluid">
@@ -48,7 +56,7 @@
         <div ng-controller="NotesController">
             <div class="header">
                 <div class="pull-left">
-                    Your Notes
+                    <a class="logo" href="#">Your Notes</a>
                 </div>
                 <div class="pull-right main-nav">
                     <a href="#sticky" ng-click="setStickyAsActive()" ng-class="{ 'active-link' : sticky_active }">sticky</a> | 
